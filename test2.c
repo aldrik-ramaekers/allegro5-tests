@@ -32,12 +32,14 @@ int main(int argc, char* argv[])
 	
 	// Create the display
 	//al_set_new_display_refresh_rate(120);
-	//al_set_new_display_flags(ALLEGRO_FULLSCREEN);
+	//al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
 	display = al_create_display(640, 480);
 	if (!display) {
 		printf("Failed to create display.\n");
 		return 1;
 	}
+	
+	//al_get_monitor_refresh_rate(0);
 	
 	event_queue = al_create_event_queue();
 	if (!event_queue) {

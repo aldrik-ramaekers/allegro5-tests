@@ -48,7 +48,17 @@ int main(int argc, const char *argv[])
 		return 1;
 	}
 	
-	printf("using driver: %s\n", al_get_audio_driver_specifier());
+	//printf("using driver: %s\n", al_get_audio_driver_specifier());
+	
+	int count = al_get_audio_device_count();
+	printf("audio device count: %d\n", count);
+	
+	for (int i = 0; i < count; i++)
+	{
+		ALLEGRO_AUDIO_DEVICE* device = al_get_audio_device(i);
+		
+		printf("audio device: %s\n", al_get_audio_device_name(device));
+	}
 	
 	while (true) {
 		al_wait_for_event(event_queue, &event);
@@ -62,7 +72,7 @@ int main(int argc, const char *argv[])
 				al_stop_samples();
 			}
 			
-			al_play_sample(sample_data, 1.0, 0.5, 1.0, ALLEGRO_PLAYMODE_REVERSED, NULL);
+			al_play_sample(sample_data, 1.0, 0.5, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 		}
 	}
 	
